@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+public class ATM_Sim {
+
+    static Scanner sc = new Scanner(System.in);
+    static int balance = 10000;
+
+    static void checkBalance() {
+        System.out.println("Your balance: " + balance);
+    }
+
+    static void withdrawMoney() {
+        System.out.print("Enter the amount to be withdrawn: ");
+        int withdrawal = sc.nextInt();
+
+        if (withdrawal <= balance && withdrawal % 100 == 0) {
+            balance -= withdrawal;
+            System.out.println("Withdrawal Successful");
+        } else {
+            System.out.println("Insufficient Balance or Invalid Amount");
+        }
+    }
+
+    static void depositMoney() {
+        System.out.print("Enter the amount to be deposited: ");
+        int deposit = sc.nextInt();
+
+        if (deposit % 100 == 0 && deposit < 40000) {
+            balance += deposit;
+            System.out.println("Deposit Successful");
+        } else {
+            System.out.println("Please enter a valid amount");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        System.out.print("Enter your four-digit PIN: ");
+        int pin = sc.nextInt();
+
+        if (pin != 1234) {
+            System.out.println("Incorrect PIN");
+            return;
+        }
+
+        System.out.println("Welcome");
+        System.out.println("1. Check Balance");
+        System.out.println("2. Withdraw Money");
+        System.out.println("3. Deposit Money");
+        System.out.println("4. Exit");
+
+        System.out.print("Enter your choice: ");
+        int choice = sc.nextInt();
+
+        switch (choice) {
+
+            case 1:
+                checkBalance();
+                break;
+
+            case 2:
+                withdrawMoney();
+                break;
+
+            case 3:
+                depositMoney();
+                break;
+
+            case 4:
+                System.out.println("Thank You");
+                break;
+
+            default:
+                System.out.println("Invalid Option");
+        }
+    }
+}
